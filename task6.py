@@ -11,12 +11,11 @@ def read_file(seq_file):
             with open(seq_file) as seq:
                 name_sequence = []
                 sequence = []
-            for l in seq:
-                if '>' in l:
-                    name_sequence.append(l.strip())
-                else:
-                    sequence.append(l.strip())
-            print(sequence)
+                for l in seq:
+                    if '>' in l:
+                        name_sequence.append(l.strip())
+                    else:
+                        sequence.append(l.strip())
         except:
             print('Ошибка ввода данных')
     return sequence
