@@ -1,4 +1,4 @@
-with open(input('Введите название файла в формате fasta: ')) as seq_file:
+def read_file(seq_file):
     name_sequence = []
     sequence = []
     for l in seq_file:
@@ -6,6 +6,7 @@ with open(input('Введите название файла в формате fa
             name_sequence.append(l.strip())
         else:
             sequence.append(l.strip())
+    return sequence
 def ORFfind(sequence):
     lst=[]
     for i in sequence:
@@ -25,13 +26,15 @@ def ORFfind(sequence):
         if len(i)%3==0:
             orf.append(i)
     return orf
-orf=ORFfind(sequence)
 def ORF100(orf):
     orf100=[]
     for i in orf:
-        if len(i)>100:
+        if len(i)>10:
             orf100.append(i)
     return orf100
+with open(input('Введите название файла в формате fasta: ')) as seq_file:
+    sequence=read_file(seq_file)
+orf=ORFfind(sequence)
 orf100=ORF100(orf)
 for i in orf100:
     print(f'ORF:{i} Length:{len(i)}')
